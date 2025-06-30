@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Knight Trials</title>
+
+  <!-- Link to CSS -->
+  <link rel="stylesheet" href="../style.css"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="hero-header">
+    <div class="header-overlay">
+      <h1>Knight Trials</h1>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="https://www.linkedin.com/in/daniel-agbara-15023219a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Overview -->
+  <main class="main-content">
+    <section class="card-section">
+      <div class="card project-overview">
+        <div class="card-content">
+        <h2>Overview</h2>
+        <figure class="content-figure">
+          <img src="../media/knight.png" alt="Frogger AI Gameplay">
+        </figure>
+          <p><strong>Knight Trials</strong> is a collaborative game development project built by a team of three students at Drexel University. The game invites players to prove their strength and courage by navigating through three treacherous elemental mazes—<strong>Earth</strong>, <strong>Ice</strong>, and <strong>Mud</strong>. Each maze presents its own unique terrain physics, visual design, and enemy encounters that challenge players in distinct ways.</p>
+          <p>As the lead developer on core systems, I engineered the player mechanics, enemy AI, and camera dynamics. This project not only helped strengthen my Unity development skills but also aligned with my interest in robotics simulation—an area where similar control and AI systems are used.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- All other sections in one unified card -->
+    <section class="card-section">
+      <div class="card project-overview">
+        <div class="card-content">
+          <h2>Scenes</h2>
+            <figure class="content-figure">
+            <img src="../media/scenes.png" alt="Frogger AI Gameplay">
+            </figure>
+          <ul>
+            <li><strong>Earth Maze:</strong> Standard terrain to ease players into core mechanics.</li>
+            <li><strong>Ice Maze:</strong> Slippery surfaces challenge navigation with momentum-based movement.</li>
+            <li><strong>Mud Maze:</strong> Movement is slowed, simulating heavy drag and encouraging tactical pacing.</li>
+          </ul>
+          
+          <h2>Player</h2>
+          <figure class="content-figure">
+            <img src="../media/player.png" alt="Frogger AI Gameplay">
+            </figure>
+          <p>I implemented a responsive third-person player controller that included:</p>
+          <ul>
+            <li>Smooth <strong>locomotion</strong> and <strong>jumping</strong></li>
+            <li><strong>Dual attack</strong> styles triggered via animation events</li>
+            <li><strong>Block</strong> and <strong>damage</strong> reactions</li>
+            <li>Modular <strong>health system</strong> with UI elements that update in world space</li>
+            <li>Integration of <strong>Cinemachine FreeLook</strong> for fluid and reactive camera movement</li>
+          </ul>
+
+          <h2>Enemies</h2>
+          <figure class="content-figure">
+            <img src="../media/enemies.png" alt="Frogger AI Gameplay">
+            </figure>
+          <p>The enemy AI was designed using a Finite State Machine (FSM), and included:</p>
+          <ul>
+            <li><strong>Patrol</strong> behavior using Unity’s NavMesh</li>
+            <li><strong>Chase and detect</strong> logic using raycasts</li>
+            <li>Alternating <strong>melee attack patterns</strong></li>
+            <li><strong>Stuck-state</strong> detection and recovery</li>
+            <li>Full <strong>death sequence</strong> with locked-out states and synchronized animations</li>
+            <li>Three visually distinct elemental enemy models for visual and gameplay variation</li>
+          </ul>
+
+          <h2>Tools Used</h2>
+          <ul>
+            <li><strong>Unity Engine</strong> (2022.x)</li>
+            <li><strong>C#</strong> for gameplay scripting</li>
+            <li><strong>Cinemachine</strong> for third-person camera control</li>
+            <li><strong>NavMesh</strong> for pathfinding and movement</li>
+            <li><strong>GitHub</strong> for version control and team collaboration</li>
+            <li><strong>Blender</strong> (assets and rigs), <strong>Mixamo</strong> (animations)</li>
+          </ul>
+
+          <h2>Demonstration</h2>
+          <video width="100%" height="auto" controls>
+            <source src="../media/knightvid.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <h2>Discussion</h2>
+          <p>This project was especially exciting for me because it overlaps with my broader passion for robotics and simulation. The logic used to control characters—such as kinematic movement, navigation graphs, and AI behaviors—are directly applicable to robot path planning and autonomous systems. Developing these systems in Unity gave me hands-on experience with state machines, animation syncing, and dynamic environment interactions—skills I hope to apply in future robotic simulation projects.</p>
+          <p>Working collaboratively also helped refine my workflow using GitHub, while building robust, modular code that integrates with other team members’ assets and logic. This was a rewarding project both technically and creatively, and it deepened my interest in creating immersive, intelligent agents.</p>
+          <p>
+            👉 If you’d like to explore the full source code, visit the GitHub repository:
+            <a href="https://github.com/DanielAgbara/KnightTrials" target="_blank" rel="noopener noreferrer">
+              Knight Trials on GitHub
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <section id="logo-footer-strip">
+    <div class="footer-strip">
+      <img src="../media/background1.jpg" alt="Footer Strip Image">
+    </div>
+  </section>
+
+</body>
+</html>

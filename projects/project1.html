@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lane Detection and Control System</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="hero-header">
+    <div class="header-overlay">
+      <h1>Lane Detection and Control System</h1>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="https://www.linkedin.com/in/daniel-agbara-15023219a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Overview Section -->
+    <section class="card-section">
+      <div class="card project-overview">
+        <div class="card-content">
+          <h2>Overview</h2>
+          <div class="overview-image">
+            <img src="../media/lanedetectionsystem.PNG" alt="Lane Detection Diagram">
+          </div>
+          <p>As part of my senior design project, I collaborated with the Zhou Robotics Lab at Drexel University and three other students to develop a lane detection and control system aimed at enhancing the Lab’s testbed for Autonomous Navigation Research.</p>
+          <p>To address the scarcity of accessible autonomous navigation platforms in Drexel University, we designed a scalable, research-grade solution that integrates real-world hardware and open-source software, enabling impactful research and prototyping.</p>
+          <p>Our system used the Yahboom Rosmaster R2 robot running on the Robot Operating System (ROS) for its modularity and compatibility. We incorporated the ZED2 stereo camera to capture RGB and depth data, and processed the images in real time using OpenCV to detect lane markings.</p>
+          <p>A custom advanced_lane_follower ROS node converted visual input into control commands, with a PID controller to ensure smooth steering. We deployed RViz for real-time visualization and bypassed simulation-only tools to ensure direct hardware interaction.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- System Architecture Section -->
+    <section class="card-section">
+    <h2>System Architecture</h2>
+
+    <div class="card arch">
+        <div class="card-logo arch-img">
+        <img src="../media/robotcar.jpg" alt="Yahboom Rosmaster">
+        </div>
+        <div class="card-content">
+        <h4>Yahboom Rosmaster R2</h4>
+        <p><a href="https://www.yahboom.net/">Yahboom</a> is a robotics company that designs versatile robot platforms tailored for education, research, and prototyping. For this project, we used the <strong>Yahboom Rosmaster R2</strong>, a robot car powered by the Jetson Nano—an efficient edge computing device well-suited for running our software stack. Its compatibility with ROS, along with built-in support for components like cameras and LiDAR, made it an ideal platform for integrating perception, control, and navigation systems in a unified and scalable way.</p>
+        </div>
+    </div>
+
+    <div class="card arch">
+        <div class="card-logo arch-img">
+        <img src="../media/ros.png" alt="ROS Framework">
+        </div>
+        <div class="card-content">
+        <h4>Robotic Operating System</h4>
+        <p>ROS (Robot Operating System) is an open-source framework that simplifies the development and integration of complex robotic systems. In this project, we developed a custom ROS node, lane follower node, that served as the central hub, connecting all critical system components, including the ZED2 stereo camera for perception, the motor driver for actuation, and OpenCV for real-time image processing and lane detection.</p>
+        </div>
+    </div>
+
+    <div class="card arch">
+        <div class="card-logo arch-img">
+        <img src="../media/zedx.png" alt="ZED 2 Camera">
+        </div>
+        <div class="card-content">
+        <h4>ZED 2 Camera</h4>
+        <p>The ZED 2 camera was used to capture real-time, high-resolution images of the mock city environment. Its stereo vision capabilities provided both RGB and depth data, enabling accurate perception of the surroundings. This visual input was essential for lane detection and navigation, allowing the system to interpret the road layout and make informed control decisions.</p>
+        </div>
+    </div>
+
+    <div class="card arch">
+        <div class="card-logo arch-img">
+        <img src="../media/opencv.png" alt="OpenCV Logo">
+        </div>
+        <div class="card-content">
+        <h4>OpenCV</h4>
+        <p>OpenCV was used to process the images captured by the ZED2 camera, focusing on extracting relevant lane information. To improve accuracy and reduce noise, we defined a region of interest in the lower half of each frame. This enabled the system to accurately determine the start and end points of the lane, forming the basis for reliable path tracking and control.</p>
+        </div>
+    </div>
+
+    <div class="card arch">
+        <div class="card-logo arch-img">
+        <img src="../media/controlsystem.png" alt="Control System Diagram">
+        </div>
+        <div class="card-content">
+        <h4>PID Controller</h4>
+        <p>In the custom lane follower node, after receiving the coordinates of the detected lane boundaries, the control system calculates the vehicle’s deviation from the centerline. It computes the appropriate steering angle and velocity commands to realign the robot with the lane, ensuring smooth and accurate tracking even in curves or slight road irregularities.</p>
+        </div>
+    </div>
+
+    <div class="card arch">
+        <div class="card-logo arch-img">
+        <img src="../media/mockcity.jpg" alt="Mock Smart City">
+        </div>
+        <div class="card-content">
+        <h4>Mock Smart City</h4>
+        <p>This system was tested in a mock city environment designed to evaluate the lane detection and control system’s performance under realistic conditions. The controlled setup allowed us to analyze how well the robot could detect lanes, make steering decisions, and adapt to various road scenarios.</p>
+        </div>
+    </div>
+
+    <div class="card arch">
+        <div class="card-logo arch-img">
+        <img src="../media/project1.jpg" alt="System Integration">
+        </div>
+        <div class="card-content">
+        <h4>System Integration and Validation</h4>
+        <p>To achieve full system integration, we developed a ROS launch file that initiates all key nodes: camera, motor, and control. We validated using RViz to visualize path alignment and confirmed the robot’s movement precisely followed the ZED2 camera’s visual data. The system demonstrated accurate lane tracking and coordinated control across all components.</p>
+        </div>
+    </div>
+
+    </section>
+
+    <!-- Demonstrations Section -->
+    <section class="card-section">
+      <div class="card project-overview">
+        <div class="card-content">
+          <h2>Demonstrations</h2>
+
+          <!-- Demo 1 -->
+          <div class="overview-image demo-video">
+            <iframe src="https://www.youtube.com/embed/cagEPz7EDAQ" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <p>
+            Prior to implementing the lane detection and control system, the robot struggled to maintain its position within the lane and frequently veered off course shortly after starting. It lacked the perception and control mechanisms needed for accurate navigation, resulting in inconsistent and unreliable movement.
+          </p>
+
+          <!-- Demo 2 -->
+          <div class="overview-image demo-video">
+            <iframe src="https://www.youtube.com/embed/uv010P_l0sY" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <p>
+            After implementing the lane detection and control system, we observed that the robot tended to overcorrect its steering in response to lane deviations. This excessive correction caused the robot to shift its field of view, making it lose sight of the lane boundaries and subsequently veer off track.
+          </p>
+
+          <!-- Demo 3 -->
+          <div class="overview-image demo-video">
+            <iframe src="https://www.youtube.com/embed/BqiF9w88bw8" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <p>
+            After implementing a safety mechanism that halts the robot when it loses track of the lane, we focused on refining the PID controller to address the issue of overcorrection. By carefully tuning the proportional, integral, and derivative gains, we aimed to achieve smoother and more stable lane tracking.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Discussion Section -->
+    <section class="card-section">
+      <div class="card project-overview">
+        <div class="card-content">
+          <h2>Discussion</h2>
+          <p>Our prototyping and validation efforts led to the successful development of an autonomous lane-following robot using the ZED 2 stereo camera and Yahboom ROSMASTER R2 within a ROS1 Melodic environment.</p>
+          <p>We implemented a real-time image processing pipeline using OpenCV—featuring grayscale conversion, Gaussian blur, Canny edge detection, and Hough Transform—to accurately detect and classify lane lines, achieving over 90% reliability during static and straight-path tests with deviations kept within ±10%.</p>
+          <p>Challenges emerged in sharp turns and corners due to motion blur and limited field of view. To address this, we implemented fail-safe logic that halts motion when lane detection fails, improving system safety.</p>
+          <p>Control-wise, we replaced a basic feedback loop with a scaled tank-based model to prevent overcorrection and ensure smoother tracking. The project highlighted the importance of integrating perception with actuation through modular design, real-time debugging tools, and safety-driven calibration for effective autonomous navigation.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <section id="logo-footer-strip">
+    <div class="footer-strip">
+      <img src="../media/background1.jpg" alt="Footer Strip Image">
+    </div>
+  </section>
+
+</body>
+</html>

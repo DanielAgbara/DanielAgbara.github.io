@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Planar 2R Robot Manipulator Simulation</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+    };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+  <header class="hero-header">
+    <div class="header-overlay">
+      <h1>Planar 2R Robot Manipulator Simulation</h1>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="https://www.linkedin.com/in/daniel-agbara-15023219a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <section class="card-section">
+        <div class="card-content">
+          <p><strong>Course:</strong> MEM T380 – Numerical Methods for Mechanical Engineering Design</p>
+          <p><strong>Tools Used:</strong> Python (NumPy, SciPy), Euler Method, Runge-Kutta 4, <code>solve_ivp</code>, Matplotlib</p>
+          <hr>
+          <figure class="content-figure">
+            <img src="../media/project3.png" alt="Planar 2R Robot Manipulator Simulation">
+          </figure>
+          <h3>Overview</h3>
+          <p>This project focused on simulating the inverse dynamics of a <strong>2R planar robotic manipulator</strong>—a system of two connected rigid links actuated by rotational joints—under the influence of time-varying torque inputs. Widely used in industrial automation, 2R manipulators serve in tasks like welding, pick-and-place, and surgical robotics due to their planar motion and relatively simple kinematics and dynamics.</p>
+          <p>The goal was to analyze how such a manipulator responds dynamically to external joint torques, compute its end-effector trajectory, and evaluate the energy and power required throughout its motion.</p>
+          <p>The manipulator was modeled under idealized conditions, assuming massless links with point masses at the joints. We applied sinusoidal torques to the joints over an 8-second simulation window and numerically solved the resulting second-order differential equations using <strong>three different methods</strong>: the <strong>Euler method</strong>, the <strong>4th-order Runge-Kutta method</strong>, and Python’s built-in <code>solve_ivp</code> function.</p>
+          <p>From the simulation, we extracted time-series data for joint angles \( \theta_1, \theta_2 \), angular velocities \( \dot{\theta}_1, \dot{\theta}_2 \), and angular accelerations \( \ddot{\theta}_1, \ddot{\theta}_2 \). Using kinematic transformations, we computed the Cartesian position, velocity, and acceleration of the end effector over time.</p>
+          <p>We also calculated the <strong>power and energy</strong> required to operate each joint, using custom implementations of the <strong>trapezoidal rule</strong>, <strong>Simpson’s rule</strong>, and SciPy’s numerical integrators for validation and comparison.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card-section">
+      <div class="card-content">
+        <h2>Theory and Implementation</h2>
+        <!-- Part 1 -->
+        <h3>1. Dynamical Modeling of a 2R Planar Manipulator</h3>
+        <p>This project simulates the inverse dynamics of a 2R planar robotic manipulator, consisting of two rigid links actuated by rotational joints. The motion is governed by the second-order nonlinear differential equation:</p>
+        <p style="text-align: center; font-size: 1.3em;">\[
+        D(\theta)\ddot{\theta} + C(\theta, \dot{\theta})\dot{\theta} + G(\theta) = Q(t)
+        \]</p>
+        <p><strong>Where:</strong></p>
+        <ul>
+          <li><strong>D(θ)</strong>: Inertia matrix</li>
+          <li><strong>C(θ, \( \dot{\theta} \))</strong>: Coriolis and centrifugal matrix</li>
+          <li><strong>G(θ)</strong>: Gravitational torque vector</li>
+          <li><strong>Q(t)</strong>: Time-varying external joint torques</li>
+          <li><strong>θ = [θ₁, θ₂]<sup>T</sup></strong>: Joint angles</li>
+        </ul>
+        <p>To numerically integrate this system, it was converted to a first-order system using the substitution:</p>
+        <p style="text-align: center; font-size: 1.3em;">\[
+        v = \dot{\theta}, \quad \dot{v} = D^{-1}(Q - Cv - G)
+        \]</p>
+        <p>Resulting in the state vector:</p>
+        <p style="text-align: center; font-size: 1.3em;">\[
+        y = \begin{bmatrix} v \\ \theta \end{bmatrix}, \quad \dot{y} = \begin{bmatrix} \dot{v} \\ v \end{bmatrix}
+        \]</p>
+
+        <!-- Part 2 -->
+        <h3>2. Numerical Integration Methods</h3>
+        <p>To solve the ODE system, we implemented and compared the following methods:</p>
+        <ul>
+          <li><strong>Euler Method:</strong> A simple but less accurate first-order method.</li>
+          <li><strong>Runge-Kutta 4th Order (RK4):</strong> A robust method used for more stable simulations.</li>
+          <li><strong>SciPy’s <code>solve_ivp</code>:</strong> A high-performance built-in method for solving stiff or non-stiff ODEs.</li>
+        </ul>
+        <p>Each solver produced joint angle trajectories \( \theta_1(t), \theta_2(t) \), velocities, and accelerations.</p>
+        <figure class="content-figure">
+          <img src="../media/thetavtime.png" alt="Integration Methods Visualization" class="content-image" />
+          <figcaption>Theta vs. Time for all methods</figcaption>
+        </figure>
+        <figure class="content-figure">
+          <img src="../media/velovtime.png" alt="Integration Methods Visualization" class="content-image" />
+          <figcaption>Angular velocity comparison</figcaption>
+        </figure>
+        <figure class="content-figure">
+          <img src="../media/accvtime.png" alt="Integration Methods Visualization" class="content-image" />
+          <figcaption>Angular acceleration comparison</figcaption>
+        </figure>
+
+        <!-- Part 3 -->
+        <h3>3. End-Effector Kinematics and Path Tracking</h3>
+        <p>Using the joint angles from integration, we computed the Cartesian coordinates of the end-effector:</p>
+        <p style="text-align: center;">\[
+        X = l_1 \cos(\theta_1) + l_2 \cos(\theta_1 + \theta_2), \quad Y = l_1 \sin(\theta_1) + l_2 \sin(\theta_1 + \theta_2)
+        \]</p>
+        <p>Velocities and accelerations were calculated using the Jacobian and its time derivative:</p>
+        <p style="text-align: center;">\[
+        \dot{X}, \dot{Y} = J(\theta) \cdot \dot{\theta}, \quad \ddot{X}, \ddot{Y} = J \cdot \ddot{\theta} + \dot{J} \cdot \dot{\theta}
+        \]</p>
+        <figure class="content-figure">
+          <img src="../media/xy1.png" alt="End-Effector Path Visualization" class="content-image" />
+        </figure>
+        <figure class="content-figure">
+          <img src="../media/xyvisualiztion.png" alt="End-Effector Path Visualization" class="content-image" />
+        </figure>
+        <h3>End-Effector Animation</h3>
+        <figure class="content-figure">
+          <video width="100%" height="auto" controls>
+            <source src="../media/xyanimation.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <figcaption>2R Manipulator Animation</figcaption>
+        </figure>
+
+        <!-- Part 4 -->
+        <h3>4. Power and Energy Consumption Analysis</h3>
+        <p>Power at each joint was computed as:</p>
+        <p style="text-align: center;">\[
+        P_1(t) = Q_1(t) \cdot \dot{\theta}_1(t), \quad P_2(t) = Q_2(t) \cdot \dot{\theta}_2(t)
+        \]</p>
+        <p>Total energy consumption was estimated by integrating power over time using:</p>
+        <ul>
+          <li>Trapezoidal Rule</li>
+          <li>Simpson’s 1/3 Rule</li>
+          <li><code>integrate.quad</code> from SciPy</li>
+          <li>NumPy's built-in trapezoid</li>
+        </ul>
+        <p>Velocity values were interpolated for accurate integration.</p>
+        <figure class="content-figure">
+          <img src="../media/powerconsumption.png" alt="Power and Energy Consumption Graphs" class="content-image" />
+          <figcaption>Energy comparison across methods</figcaption>
+        </figure>
+
+        <!-- Part 5 -->
+        <h3>Summary of Implementation Results</h3>
+        <p>Our simulation pipeline accurately captured joint and end-effector dynamics of the 2R robotic arm. By comparing multiple integration methods, we validated system stability and energy computation. The use of custom numerical methods alongside optimized built-in solvers enhanced both understanding and performance.</p>
+        <p>Results showed all methods yielded similar energy estimates for each joint, validating the consistency of our numerical integration techniques. Despite slight differences due to resolution and interpolation, the calculated energy values were within tight bounds across all solvers.</p>
+        <p>The final results for energy consumption per joint confirmed the stability and effectiveness of both custom and library-based methods. This verification was crucial due to the absence of a closed-form analytical solution.</p>
+        <p>📄 For full details, code implementation, and discussion, view the full report and source files:
+          <a href="https://drive.google.com/drive/folders/1YN3xPo-aHALrlHOIDBYunmlnA2B1Q-W9" target="_blank" rel="noopener noreferrer">
+            Full Report & Source Code on Google Drive
+          </a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <section id="logo-footer-strip">
+    <div class="footer-strip">
+      <img src="../media/background1.jpg" alt="Footer Strip Image">
+    </div>
+  </section>
+</body>
+</html>

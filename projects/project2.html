@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reinforcement Learning Agent – Frogger</title>
+
+  <!-- Link to shared CSS -->
+  <link rel="stylesheet" href="../style.css"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <!-- MathJax for LaTeX equations -->
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="hero-header">
+    <div class="header-overlay">
+      <h1>Reinforcement Learning Agent – Frogger</h1>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="https://www.linkedin.com/in/daniel-agbara-15023219a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Overview Section -->
+    <section class="card-section">
+      <div class="card project-overview">
+        <div class="card-content">
+            <h2>Overview</h2>
+        <figure class="content-figure">
+          <img src="../media/project2.png" alt="Frogger AI Gameplay">
+        </figure>
+        </figure>
+        
+          <p>
+            In this project, I designed and implemented a reinforcement learning (RL) agent to play a simplified version of the classic arcade game <em>Frogger</em>. The objective was to train an autonomous agent to guide a frog safely across a dynamic environment filled with hazards such as cars and water bodies, ultimately reaching the goal row at the top of the screen. The environment was rendered using the Python Arcade library, while the agent logic was built from scratch using standard Python libraries.
+          </p>
+          <p>
+            The agent used a Q-learning algorithm to iteratively improve its decision-making based on environmental feedback. I extended the base game state to create a custom <code>Q_State</code> class, which enabled the abstraction of key features—specifically the frog’s x-position and the three tiles directly ahead. This reduced the complexity of the state space while retaining enough context for effective learning. A reward structure was designed to reinforce successful crossings and penalize failures.
+          </p>
+          <p>
+            To optimize training, the agent utilized an ε-greedy policy with decaying exploration, and Q-values were persistently saved and loaded from a JSON-based Q-table. The final model was evaluated across various difficulty settings and tested for generalization and safety, including scenarios with edge cases like motion uncertainty and visual ambiguity.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Combined Section for Theory, Demonstration, and Discussion -->
+    <section class="card-section">
+      <div class="card">
+        <div class="card-content">
+
+          <!-- Theory -->
+          <h2>Theory</h2>
+          <p>
+            The underlying learning algorithm is <strong>Q-learning</strong>, a value-based reinforcement learning method grounded in the Bellman equation. At its core, Q-learning estimates the optimal action-value function, \( Q(s, a) \), which predicts the expected cumulative reward of taking action \( a \) in state \( s \) and following the optimal policy thereafter.
+          </p>
+
+          <p>The update rule is:</p>
+          <p style="font-size: 1.2rem;">
+            $$
+            Q(s, a) \leftarrow (1 - \alpha)Q(s, a) + \alpha \left[ r + \gamma \max_{a'} Q(s', a') \right]
+            $$
+          </p>
+
+          <p><strong>Where:</strong></p>
+          <ul>
+            <li>\( \alpha \) is the learning rate</li>
+            <li>\( \gamma \) is the discount factor</li>
+            <li>\( r \) is the immediate reward</li>
+            <li>\( s' \) is the resulting next state</li>
+            <li>\( a' \) is the next action</li>
+          </ul>
+
+          <p>
+            Each interaction with the environment updates the Q-table using this rule. The agent selects actions based on an ε-greedy strategy, balancing exploration (random action selection) and exploitation (choosing the best-known action). As episodes progress, \( \varepsilon \) decays to prioritize learned policies.
+          </p>
+
+          <p>
+            The state abstraction was carefully engineered to maintain learning efficiency without overwhelming the agent with unnecessary data. Rewards were structured to prioritize time-efficient goal completion and penalize unsafe or failed outcomes. Training was conducted incrementally—starting closer to the goal and gradually increasing the complexity—allowing the agent to build competence layer by layer.
+          </p>
+
+          <!-- Demonstration -->
+          <h2>Demonstration</h2>
+          <video width="100%" height="auto" controls>
+            <source src="../media/froggerdemo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <p style="margin-top: 1rem;">
+            This demonstration shows the trained RL agent navigating hazards in the Frogger environment. The agent successfully uses its learned Q-values to make optimal decisions, avoid collisions, and reach the goal lane efficiently.
+          </p>
+
+          <!-- Discussion -->
+          <h2>Discussion</h2>
+          <p>
+            I chose to explore Artificial Intelligence and reinforcement learning because of my passion for building intelligent robots that can solve real-world problems. This project, completed as part of a course at Drexel University, deepened my understanding of how autonomous agents learn from their environment and make decisions over time.
+          </p>
+          <p>
+            More importantly, it sparked a lasting interest in reinforcement learning and its potential to power robots that enhance human life—whether through automation, assistive technologies, or innovative user experiences. It has motivated me to continue studying advanced RL algorithms and pursue more opportunities to develop autonomous systems that are both practical and impactful.
+          </p>
+          <p>
+            👉 If you’d like to explore the full source code, visit the GitHub repository:
+            <a href="https://github.com/DanielAgbara/Frogger_Reinforcement_Learning_Agent/tree/main" target="_blank" rel="noopener noreferrer">
+              github.com/DanielAgbara/Frogger_Reinforcement_Learning_Agent
+            </a>
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <section id="logo-footer-strip">
+    <div class="footer-strip">
+      <img src="../media/background1.jpg" alt="Footer Strip Image">
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Closed-Loop Hydroponic Planter</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <header class="hero-header">
+    <div class="header-overlay">
+      <h1>Closed-Loop Hydroponic Planter</h1>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="https://www.linkedin.com/in/daniel-agbara-15023219a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    
+    <!-- Overview Card -->
+    <section class="card-section">
+      <div class="card project-overview">
+        <div class="card-content">
+        <h2>Overview</h2>
+        <figure class="content-figure">
+          <img src="../media/project5.png" alt="Closed-Loop Hydroponic Planter">
+        </figure>
+          <p>
+            As part of our final project for MEM 459, our team designed and implemented a fully functional <strong>automated irrigation and water-level regulation system</strong> for hydroponic planting. The project served as a capstone application of concepts learned in control theory, digital signal processing, and embedded systems programming.
+          </p>
+          <p>
+            The system’s goal was to maintain a stable hydration level within a soil-free planting medium by automatically transferring water between a reservoir and a planting container. Using a <strong>resistance-based water-level sensor</strong> as feedback and a <strong>PID control algorithm</strong> implemented on an <strong>Arduino UNO</strong>, the system detects real-time moisture fluctuations and adjusts a <strong>bidirectional pump</strong> to fill or drain water accordingly.
+          </p>
+          <p>
+            This closed-loop control system reflects real-world automation challenges in agriculture and fluid management, including robustness, responsiveness, and efficiency.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Everything Else in One Box -->
+    <section class="card-section">
+      <div class="card-content">
+        
+        <h2>Project Architecture</h2>
+        <figure class="content-figure">
+          <img src="../media/mem459.png" alt="Closed-Loop Hydroponic Planter">
+        </figure>
+        <ul>
+          <li><strong>Arduino UNO:</strong> Core microcontroller running the PID loop and controlling the pump via PWM and digital logic.</li>
+          <li><strong>Water-Level Sensor:</strong> Resistance-based; placed in the growing medium.</li>
+          <li><strong>Bidirectional Pump (Kamoer NKP DCL-S10D):</strong> Pumps water in/out based on control input.</li>
+          <li><strong>H-Bridge Motor Driver (L298N):</strong> Controls pump direction and speed.</li>
+          <li><strong>3D-Printed Chassis:</strong> Designed with Fusion 360 for compact integration.</li>
+          <li><strong>Timer Interrupt:</strong> Used to sample sensor data and update control logic at 500 ms intervals.</li>
+        </ul>
+
+        <h2>Implementation Details</h2>
+        <h4>Hardware Design</h4>
+        <figure class="content-figure">
+          <img src="../media/chasis.png" alt="Closed-Loop Hydroponic Planter">
+        </figure>
+        <p>Custom vertical chassis with removable electronics bay. Printed with PLA using Bambu P1S.</p>
+        <h4>Circuit Design</h4>
+        <figure class="content-figure">
+          <img src="../media/realcircuit.png" alt="Closed-Loop Hydroponic Planter">
+        </figure>
+        <ul>
+          <li><strong>PWM Pin 10:</strong> Controls motor speed</li>
+          <li><strong>Pins IN1 and IN2:</strong> Control pump direction</li>
+          <li><strong>Pin A1:</strong> Reads sensor resistance via ADC</li>
+          <li><strong>Pin 9:</strong> Powers the sensor</li>
+          <li><strong>DuPont-style harness:</strong> For clean solderless connections</li>
+        </ul>
+        <h4>Control Algorithm</h4>
+        <p>
+          PID control using the <code>PID_v1</code> Arduino library, with the following gains:<br>
+          Kp = 3.0, Ki = 0.8, Kd = 0.0
+        </p>
+        <p>
+          Setpoint: 120 ohms<br>
+          If resistance &lt; 120 → system fills water<br>
+          If resistance &gt; 120 → system drains water
+        </p>
+
+        <h2>Data Collection & Visualization</h2>
+        <p>
+          A Python script (<code>water_filling_system.py</code>) was developed to log and analyze serial data from Arduino. Key plots:
+        </p>
+        <ul>
+          <li>Water Resistance vs. Time</li>
+          <li>Pump Speed vs. Time</li>
+        </ul>
+
+        <h2>Testing & Results</h2>
+        <video width="100%" height="auto" controls>
+            <source src="../media/mem459vid.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        <ul>
+          <li>Maintained regulated water level at ~120 ohm setpoint</li>
+          <li>Responsive PID control loop for fluid regulation</li>
+          <li>Heat gun and hot glue used for fast manual tolerancing</li>
+          <li>Compact, modular final system design</li>
+        </ul>
+
+        <h2>Challenges & Lessons Learned</h2>
+        <ul>
+          <li><strong>Sensor tolerance</strong> required careful mounting and calibration</li>
+          <li><strong>Pump behavior</strong> impacted by water line height</li>
+          <li>Small Ki changes caused drastic response differences</li>
+          <li>Learned practical hardware fabrication and troubleshooting</li>
+        </ul>
+
+        <h2>Future Improvements</h2>
+        <ul>
+          <li>Add wireless monitoring (e.g., ESP8266 or BLE)</li>
+          <li>Improve sensor shielding and calibration</li>
+          <li>Add slope to reservoir for full drainage</li>
+          <li>Use environmental sensors for tuning</li>
+          <li>Replace analog sensor with capacitive sensor</li>
+        </ul>
+
+        <h2>Skills Demonstrated</h2>
+        <ul>
+          <li>Closed-loop control and PID tuning</li>
+          <li>Embedded C++ and serial logging</li>
+          <li>Arduino-based actuation and circuit design</li>
+          <li>3D CAD modeling and printing</li>
+          <li>Team collaboration and fast iteration</li>
+        </ul>
+
+        <h2>Discussion</h2>
+        <figure class="content-figure">
+          <img src="../media/finalmem459.png" alt="Closed-Loop Hydroponic Planter">
+        </figure>
+        <p>
+          This project gave me hands-on experience applying control theory in a tangible, meaningful way. It strengthened my understanding of how sensor feedback, actuator response, and software timing come together in embedded systems. Beyond classwork, this experience forms the foundation for future work in <strong>smart systems, robotics</strong>, and <strong>autonomous environmental control</strong>.
+        </p>
+        <p>📄 For full details, code implementation, and discussion, view the full report and source files:
+          <a href="https://drive.google.com/drive/folders/1hF0RkIyQsTOyVn5cIALjZFcftXQo9voY" target="_blank" rel="noopener noreferrer">
+            Full Report & Source Code on Google Drive
+          </a>
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <section id="logo-footer-strip">
+    <div class="footer-strip">
+      <img src="../media/background1.jpg" alt="Footer Strip Image">
+    </div>
+  </section>
+
+</body>
+</html>
