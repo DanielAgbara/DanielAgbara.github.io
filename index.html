@@ -8,31 +8,49 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
 </head>
 
-<body>
+<body class="home-page">
 
   <header class="hero-header">
     <div class="header-overlay">
-      <h1>Daniel Agbara</h1>
-      <nav>
+      <nav class="hero-nav" aria-label="Primary navigation">
         <a href="#">Home</a>
         <a href="#projects">Projects</a>
-        <a href="https://www.linkedin.com/in/daniel-agbara-15023219a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
       </nav>
+
+      <div class="hero-content">
+        <p class="hero-eyebrow">Robotics &bull; Controls &bull; Autonomous Systems</p>
+      <h1>Daniel Agbara</h1>
+        <p class="hero-title">Mechanical Engineering M.S. Student and Robotics Researcher</p>
+        <p class="hero-summary">I develop intelligent robotic systems through perception, manipulation, control, and learning from human demonstrations.</p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">View Projects</a>
+          <a class="button button-secondary" href="#experience">View Experience</a>
+          <a class="button button-secondary" href="https://github.com/DanielAgbara" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="button button-secondary" href="https://www.linkedin.com/in/daniel-agbara-15023219a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
     </div>
   </header>
 
   <!-- ABOUT SECTION -->
-  <section class="about with-image">
+  <section id="about" class="about with-image">
     <div class="about-image">
-      <img src="media/profile.jpg" alt="Daniel Agbara headshot">
+      <img src="media/profile.jpg" alt="Portrait of Daniel Agbara">
     </div>
     <div class="about-text">
-      <h2>About Me</h2>
-      <p>I am a Mechanical Engineer currently pursuing a Master&rsquo;s degree at the University of Texas at Austin. I earned my Bachelor&rsquo;s degree in Mechanical Engineering with a minor in Computer Science from Drexel University &mdash; a combination driven by my deep interest in Robotics and Automation, particularly in the areas of Modeling, and Control.</p>
-      <p>My passion lies in building intelligent robots and autonomous systems that have real-world impact. I believe that advancements in robotics and automation are key to driving the next wave of human innovation by enhancing productivity, efficiency, and safety across industries.</p>
-      <p>This portfolio is more than just a showcase &mdash; it&rsquo;s a living record of my accomplishments and a reflection of the professional experiences that shape my journey.</p>
-      <p>I'm always open to working on exciting projects in robotics and automation, and I enjoy meeting like-minded individuals who share the same enthusiasm for innovation&mdash;whether it's through online collaboration or in-person events.</p>
-      <p>Feel free to connect with me via [LinkedIn] using the link in the header to start a conversation.</p>
+      <p class="section-label">About Me</p>
+      <h2>Building robots that can perceive, learn, and act</h2>
+      <p>I am a Mechanical Engineering master&rsquo;s student at the University of Texas at Austin, concentrating in Dynamic Systems and Control. My work combines robot kinematics, motion control, perception, and machine learning to develop autonomous systems that interact effectively with people and physical environments.</p>
+      <p>At UT Austin&rsquo;s HERO Lab, I contribute to a robotic cleaning system for surgical environments. My work includes 6-DOF manipulation, body-tracking teleoperation, stereo-vision perception, object detection, camera&ndash;robot calibration, force sensing, and multimodal demonstration-data collection.</p>
+      <p>I previously earned a B.S. in Mechanical Engineering with a minor in Computer Science from Drexel University. I am interested in robotics, controls, autonomous systems, and research opportunities that translate rigorous engineering into meaningful real-world applications.</p>
+
+      <div class="about-links">
+        <a href="#projects">Explore my work</a>
+        <a href="mailto:daniel.agbara17@gmail.com">Email me</a>
+      </div>
     </div>
   </section>
 
