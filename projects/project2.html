@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Reinforcement Learning Agent – Frogger</title>
+  <title>Reinforcement Learning Agent &ndash; Frogger</title>
 
   <!-- Link to shared CSS -->
   <link rel="stylesheet" href="../style.css"/>
@@ -23,7 +23,7 @@
   <!-- Header -->
   <header class="hero-header">
     <div class="header-overlay">
-      <h1>Reinforcement Learning Agent – Frogger</h1>
+      <h1>Reinforcement Learning Agent &ndash; Frogger</h1>
       <nav>
         <a href="../index.html">Home</a>
         <a href="../index.html#projects">Projects</a>
@@ -49,7 +49,7 @@
             In this project, I designed and implemented a reinforcement learning (RL) agent to play a simplified version of the classic arcade game <em>Frogger</em>. The objective was to train an autonomous agent to guide a frog safely across a dynamic environment filled with hazards such as cars and water bodies, ultimately reaching the goal row at the top of the screen. The environment was rendered using the Python Arcade library, while the agent logic was built from scratch using standard Python libraries.
           </p>
           <p>
-            The agent used a Q-learning algorithm to iteratively improve its decision-making based on environmental feedback. I extended the base game state to create a custom <code>Q_State</code> class, which enabled the abstraction of key features—specifically the frog’s x-position and the three tiles directly ahead. This reduced the complexity of the state space while retaining enough context for effective learning. A reward structure was designed to reinforce successful crossings and penalize failures.
+            The agent used a Q-learning algorithm to iteratively improve its decision-making based on environmental feedback. I extended the base game state to create a custom <code>Q_State</code> class, which enabled the abstraction of key features&mdash;specifically the frog&rsquo;s x-position and the three tiles directly ahead. This reduced the complexity of the state space while retaining enough context for effective learning. A reward structure was designed to reinforce successful crossings and penalize failures.
           </p>
           <p>
             To optimize training, the agent utilized an ε-greedy policy with decaying exploration, and Q-values were persistently saved and loaded from a JSON-based Q-table. The final model was evaluated across various difficulty settings and tested for generalization and safety, including scenarios with edge cases like motion uncertainty and visual ambiguity.
@@ -90,7 +90,7 @@
           </p>
 
           <p>
-            The state abstraction was carefully engineered to maintain learning efficiency without overwhelming the agent with unnecessary data. Rewards were structured to prioritize time-efficient goal completion and penalize unsafe or failed outcomes. Training was conducted incrementally—starting closer to the goal and gradually increasing the complexity—allowing the agent to build competence layer by layer.
+            The state abstraction was carefully engineered to maintain learning efficiency without overwhelming the agent with unnecessary data. Rewards were structured to prioritize time-efficient goal completion and penalize unsafe or failed outcomes. Training was conducted incrementally&mdash;starting closer to the goal and gradually increasing the complexity&mdash;allowing the agent to build competence layer by layer.
           </p>
 
           <!-- Demonstration -->
@@ -109,10 +109,10 @@
             I chose to explore Artificial Intelligence and reinforcement learning because of my passion for building intelligent robots that can solve real-world problems. This project, completed as part of a course at Drexel University, deepened my understanding of how autonomous agents learn from their environment and make decisions over time.
           </p>
           <p>
-            More importantly, it sparked a lasting interest in reinforcement learning and its potential to power robots that enhance human life—whether through automation, assistive technologies, or innovative user experiences. It has motivated me to continue studying advanced RL algorithms and pursue more opportunities to develop autonomous systems that are both practical and impactful.
+            More importantly, it sparked a lasting interest in reinforcement learning and its potential to power robots that enhance human life&mdash;whether through automation, assistive technologies, or innovative user experiences. It has motivated me to continue studying advanced RL algorithms and pursue more opportunities to develop autonomous systems that are both practical and impactful.
           </p>
           <p>
-            👉 If you’d like to explore the full source code, visit the GitHub repository:
+            👉 If you&rsquo;d like to explore the full source code, visit the GitHub repository:
             <a href="https://github.com/DanielAgbara/Frogger_Reinforcement_Learning_Agent/tree/main" target="_blank" rel="noopener noreferrer">
               github.com/DanielAgbara/Frogger_Reinforcement_Learning_Agent
             </a>
