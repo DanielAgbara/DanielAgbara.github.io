@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Daniel Agbara's Magic Man dynamics project: Lagrangian modelling, Python simulation, and the effect of bearing friction on a balancing toy.">
+  <title>Magic Man: Nonlinear Dynamics | Daniel Agbara</title>
+  <link rel="stylesheet" href="../style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="case-study">
+  <header class="hero-header">
+    <div class="header-overlay">
+      <p class="hero-eyebrow">UT Austin &bull; Fall 2025</p>
+      <h1>Magic Man: Nonlinear Dynamics</h1>
+      <p>From a balancing toy to a coupled dynamic model.</p>
+      <nav aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#projects">Featured Projects</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <article class="case-content">
+      <section aria-labelledby="overview">
+        <p class="section-label">Modelling of Physical Systems &bull; Final Project</p>
+        <h2 id="overview">What makes the body rock as the ball slows down?</h2>
+        <p class="case-lead">The Magic Man is a balancing toy with a body above a rolling ball and a counterweight below its center. I used Lagrangian mechanics to model how forward motion, body rotation, gravity, and friction interact, then compared the resulting motion through Python simulations.</p>
+        <figure class="content-figure">
+          <img src="../media/magic-man-model.svg" width="1000" height="600" alt="Conceptual side view showing the upper body mass, lower counterweight, ball radius R, forward displacement x, and body angle theta">
+          <figcaption>Conceptual schematic redrawn from the model described in the project notes; not to scale.</figcaption>
+        </figure>
+        <dl class="case-facts">
+          <div><dt>Methods</dt><dd>Lagrangian mechanics, state-space formulation, bond-graph representation</dd></div>
+          <div><dt>Tools</dt><dd>Python, NumPy, SciPy solve_ivp, Matplotlib</dd></div>
+          <div><dt>Focus</dt><dd>Nonlinear coupling and the effect of bearing friction</dd></div>
+        </dl>
+        <nav class="case-nav" aria-label="On this page">
+          <a href="#model">Model</a><a href="#results">Simulation results</a><a href="#reflection">Takeaways</a><a href="#report">Original report</a>
+        </nav>
+      </section>
+
+      <section id="model" aria-labelledby="model-title">
+        <h2 id="model-title">Building the model</h2>
+        <p>I reduced the system to two generalized coordinates: the ball's horizontal displacement <strong>x</strong> and the body's angle from vertical <strong>θ</strong>. Motion is restricted to the vertical plane, with rotation about the lateral axis. A no-slip rolling constraint relates ball rotation to translation.</p>
+        <ul>
+          <li>The ball contributes translational mass and rotational inertia.</li>
+          <li>The body and counterweight are represented by masses at fixed distances on opposite sides of the pivot.</li>
+          <li>Rolling resistance opposes forward motion; bearing friction supplies a resisting torque in the angular equation.</li>
+        </ul>
+        <h3>From energy to equations of motion</h3>
+        <p>I expressed the kinetic and potential energies in terms of x and θ, applied the Euler&ndash;Lagrange equations with generalized forces, and solved the coupled equations for the two accelerations.</p>
+        <div class="case-equations" aria-label="Coupled equations of motion">
+          <p>M ẍ + K cos(θ) θ̈ − K sin(θ) θ̇² = Q<sub>x</sub></p>
+          <p>K cos(θ) ẍ + I θ̈ − gK sin(θ) = Q<sub>θ</sub></p>
+        </div>
+        <p>Here Q<sub>x</sub> is the generalized horizontal force and Q<sub>θ</sub> is the generalized torque. The reduced coefficients collect the mass and geometry terms:</p>
+        <dl class="case-definitions">
+          <div><dt>M = m<sub>b</sub> + m<sub>c</sub> + m<sub>s</sub> + J<sub>b</sub>/R²</dt><dd>Effective translational inertia, including the ball's rolling inertia.</dd></div>
+          <div><dt>K = m<sub>c</sub>L<sub>1</sub> − m<sub>s</sub>L<sub>2</sub></dt><dd>Mass-offset coefficient coupling translation, rotation, and gravity.</dd></div>
+          <div><dt>I = m<sub>c</sub>L<sub>1</sub>² + m<sub>s</sub>L<sub>2</sub>²</dt><dd>Rotational inertia of the two point masses about the pivot.</dd></div>
+        </dl>
+        <p>The subscripts b, c, and s denote the ball, body, and counterweight. J<sub>b</sub> is the ball's moment of inertia, R is its radius, and L<sub>1</sub> and L<sub>2</sub> are the body and counterweight offsets.</p>
+        <h3>Numerical implementation</h3>
+        <p>I converted the equations into a first-order system with state [x, θ, ẋ, θ̇] and integrated it with SciPy's <code>solve_ivp</code>. The implementation uses smooth hyperbolic-tangent approximations for rolling and bearing friction. Matplotlib plots track displacement, forward speed, body angle, and angular velocity.</p>
+        <p>The report also sketches a bond-graph representation using force&ndash;velocity and torque&ndash;angular-velocity pairs to relate the model to an energy-based system description.</p>
+      </section>
+
+      <section id="results" aria-labelledby="results-title">
+        <h2 id="results-title">How bearing friction changes the response</h2>
+        <p>The reported comparison starts from x = 0 m, θ = 0, ẋ = 0.25 m/s, and θ̇ = 0. Rolling resistance remains present in both cases. The plots below are extracted directly from the original report.</p>
+        <h3>With bearing friction</h3>
+        <p>The forward speed decreases toward zero while the body develops a small angular offset. Near the transition to rest, the angular response changes and then returns toward zero. The plotted response shows little oscillation compared with the free-bearing case.</p>
+        <figure class="content-figure">
+          <a href="../media/magic-man-bearing-friction.png"><img src="../media/magic-man-bearing-friction.png" width="1972" height="1203" loading="lazy" alt="Four original plots with bearing friction: displacement levels off, forward speed approaches zero, and body angle and angular velocity settle toward zero"></a>
+          <figcaption>With bearing friction: the report uses a 0.001 N·m Coulomb bearing-friction torque parameter. Select the plot to view it at full resolution. Source: report, p. 5.</figcaption>
+        </figure>
+        <h3>Without bearing friction</h3>
+        <p>Setting the bearing-friction torque to zero produces visible body oscillations while the ball slows. The angular oscillation envelope decreases later in the simulation. Rolling resistance is still active, so removing bearing friction does not make this a lossless system.</p>
+        <figure class="content-figure">
+          <a href="../media/magic-man-free-bearing.png"><img src="../media/magic-man-free-bearing.png" width="2559" height="1358" loading="lazy" alt="Four original plots without bearing friction: the ball slows while body angle and angular velocity oscillate, with the oscillation envelope decreasing later"></a>
+          <figcaption>Without bearing friction: the longer time window shows the angular oscillation envelope decreasing. Source: report, p. 6.</figcaption>
+        </figure>
+        <details class="case-detail">
+          <summary>Inspect the first 20 seconds of oscillation</summary>
+          <figure class="content-figure">
+            <a href="../media/magic-man-oscillations.png"><img src="../media/magic-man-oscillations.png" width="1196" height="880" loading="lazy" alt="Close-up of the first 20 seconds showing repeated body-angle and angular-velocity oscillations as forward speed decreases"></a>
+            <figcaption>The shorter time window makes individual oscillations visible. Source: report, p. 7.</figcaption>
+          </figure>
+        </details>
+        <div class="case-takeaway"><h3>Key finding</h3><p>The comparison shows that the assumed bearing friction strongly changes the simulated angular response. It explains why the first simulation did not show the rocking motion I initially expected.</p></div>
+      </section>
+
+      <section id="reflection" aria-labelledby="reflection-title">
+        <h2 id="reflection-title">What this project demonstrates</h2>
+        <p>This project connects physical assumptions to energy equations, numerical implementation, and interpretation of a dynamic response. The friction comparison made the modelling choices visible in the results and helped me investigate an unexpected response.</p>
+        <h3>Model scope and next steps</h3>
+        <p>These results are simulation observations. The report uses estimated geometry and mass distribution and does not document experimental validation. Its code screenshots and plotted cases also use different time spans, so a reproducible comparison would benefit from a separate, complete script for each case.</p>
+        <p>A useful extension would be to measure the toy's motion, estimate its friction parameters, and compare the measured and simulated responses. Saving the source code, parameter sets, and raw plot data would also make it possible to regenerate consistent figures and quantify agreement.</p>
+      </section>
+
+      <section id="report" aria-labelledby="report-title">
+        <h2 id="report-title">Original project notes</h2>
+        <p>The original handwritten report contains the derivation, code screenshots, simulation plots, and bond-graph sketches behind this case study.</p>
+        <a class="project-link" href="../media/magic-man-report.pdf">Read the original report (PDF)</a>
+      </section>
+      <a class="project-link" href="../index.html#projects">&larr; Back to featured projects</a>
+    </article>
+  </main>
+  <footer id="logo-footer-strip"><div class="footer-strip"><img src="../media/background1.jpg" alt=""></div></footer>
+</body>
+</html>

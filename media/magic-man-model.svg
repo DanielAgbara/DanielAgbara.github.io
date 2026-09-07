@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-labelledby="title desc">
+  <title id="title">Magic Man: a coupled rolling ball and pendulum</title>
+  <desc id="desc">Conceptual side view. The body mass is above the rolling ball's center, and the counterweight is below it. The coordinates are forward displacement x and body angle theta.</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#c78847" stroke-width="1.5"/></marker></defs>
+  <rect width="1000" height="600" rx="16" fill="#142b3b"/>
+  <g font-family="Inter, Arial, sans-serif" fill="#f5f7fa">
+    <text x="58" y="72" font-size="19" fill="#e0a458" letter-spacing="3">MODELLING &amp; SIMULATION</text>
+    <text x="58" y="123" font-size="36" font-weight="700">The Magic Man</text>
+    <path d="M100 487 H900" stroke="#8da7b8" stroke-width="3"/>
+    <circle cx="415" cy="357" r="130" fill="#203f54" stroke="#acc2d0" stroke-width="4"/>
+    <path d="M415 175 V487" stroke="#7895a7" stroke-dasharray="8 8" stroke-width="2"/>
+    <path d="M449 219 L395 439" stroke="#e0a458" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="449" cy="219" r="27" fill="#e0a458"/>
+    <circle cx="395" cy="439" r="21" fill="#a7cbdc"/>
+    <circle cx="415" cy="357" r="9" fill="#fff"/>
+    <path d="M415 283 Q427 282 434 289" fill="none" stroke="#e0a458" stroke-width="3"/>
+    <text x="430" y="271" font-size="24">θ</text>
+    <path d="M415 357 H526" stroke="#8da7b8" stroke-width="2"/>
+    <text x="483" y="345" font-size="22">R</text>
+    <path d="M483 219 H605 M423 439 H605" stroke="#7895a7" stroke-width="2"/>
+    <text x="625" y="226" font-size="24">Body mass m<tspan baseline-shift="sub" font-size="16">c</tspan></text>
+    <text x="625" y="445" font-size="24">Counterweight m<tspan baseline-shift="sub" font-size="16">s</tspan></text>
+    <text x="115" y="362" font-size="23">Ball m<tspan baseline-shift="sub" font-size="16">b</tspan></text>
+    <path d="M415 528 H585" stroke="#c78847" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="610" y="536" font-size="23">x · forward motion</text>
+    <text x="58" y="576" font-size="16" fill="#acc2d0">Conceptual side view · rolling without slip · not to scale</text>
+  </g>
+</svg>
