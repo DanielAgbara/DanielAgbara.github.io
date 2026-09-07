@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Daniel Agbara and Min-Geun Park's robotics course projects: rigid-body motion, KUKA kinematics, sensor calibration and virtual fixtures in Python and MATLAB.">
+  <title>Algorithms for Sensor-Based Robotics | Daniel Agbara</title>
+  <link rel="stylesheet" href="../style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="case-study">
+  <header class="hero-header">
+    <div class="header-overlay">
+      <p class="section-label">UT Austin &bull; ME 384R &bull; Spring 2026</p>
+      <h1>Algorithms for Sensor-Based Robotics</h1>
+      <p>From rigid-body geometry to calibrated sensing and guided robot motion.</p>
+      <nav aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="https://github.com/DanielAgbara/ASBR">Source code</a>
+      </nav>
+    </div>
+  </header>
+  <main class="case-content">
+    <section aria-labelledby="overview-title">
+      <p class="section-label">Four projects &middot; One robotics foundation</p>
+      <h2 id="overview-title">Connecting the mathematics to robot behavior</h2>
+      <p class="case-lead">Working with Min-Geun Park, I developed a series of Python and MATLAB projects exploring how robots represent motion, reach targets, interpret sensor measurements and respond to geometric constraints.</p>
+      <p>The work progresses from rotation and screw-motion routines to seven-joint manipulator kinematics, sensor calibration and virtual fixtures. Each project combines a mathematical model with numerical experiments and visualizations.</p>
+      <dl class="case-facts">
+        <div><dt>Team</dt><dd>Daniel Agbara and Min-Geun Park</dd></div>
+        <div><dt>Tools</dt><dd>Python, NumPy, Matplotlib and MATLAB</dd></div>
+        <div><dt>Course</dt><dd>Algorithms for Sensor-Based Robotics, Prof. Farshid Alambeigi</dd></div>
+      </dl>
+      <nav class="case-nav" aria-label="On this page">
+        <a href="#rigid-motion">Rigid motion</a><a href="#kinematics">Kinematics</a><a href="#calibration">Calibration</a><a href="#fixtures">Virtual fixtures</a><a href="#takeaways">Takeaways</a>
+      </nav>
+    </section>
+    <section id="rigid-motion" aria-labelledby="rigid-title">
+      <p class="section-label">THA1 &middot; Python</p>
+      <h2 id="rigid-title">Representing rigid-body motion</h2>
+      <p>We implemented conversions between rotation matrices, axis&ndash;angle coordinates, quaternions and Euler angles, then used screw theory to describe a moving coordinate frame. A screw axis combines rotation about a line with translation along it.</p>
+      <figure class="content-figure">
+        <a href="../media/asbr/tha1-screw-motion.png"><img src="../media/asbr/tha1-screw-motion.png" alt="Computed helical trajectory with moving coordinate frames around a vertical screw axis" loading="lazy"></a>
+        <figcaption>A reproducible example generated from the Python implementation. The body completes one turn with pitch 0.3 distance units per radian.</figcaption>
+      </figure>
+      <p>Round-trip tests check the consistency of the representations, including identity and 180-degree rotations. These edge cases matter because a formula that works for ordinary rotations may become numerically undefined at a special orientation.</p>
+      <p><a href="https://github.com/DanielAgbara/ASBR/tree/main/THA1">Explore THA1: code, tests and run instructions</a></p>
+    </section>
+    <section id="kinematics" aria-labelledby="kinematics-title">
+      <p class="section-label">THA2 &middot; MATLAB</p>
+      <h2 id="kinematics-title">Controlling a redundant manipulator</h2>
+      <p>Using a KUKA LBR iiwa 14 R820 model, we built forward kinematics and Jacobians with the Product of Exponentials formulation. Inverse-kinematics experiments compare Jacobian-based updates and explore how redundancy can support secondary objectives such as joint-limit avoidance and manipulability.</p>
+      <figure class="video-figure">
+        <video controls playsinline preload="metadata" poster="../media/asbr/tha2-kuka.png" aria-label="Original KUKA helix-path simulation" style="display:block;width:100%;max-width:100%;margin:0">
+          <source src="../media/asbr/helix-path.mp4" type="video/mp4">
+          <a href="../media/asbr/helix-path.mp4">Download the helix-path simulation</a>
+        </video>
+        <figcaption>Original project recording of a helical path experiment. The poster is a separate MATLAB rendering of the bundled robot model.</figcaption>
+      </figure>
+      <p><a href="https://github.com/DanielAgbara/ASBR/tree/main/THA2">Explore THA2: kinematics, solver variants and trajectory recordings</a></p>
+    </section>
+    <section id="calibration" aria-labelledby="calibration-title">
+      <p class="section-label">THA3 &middot; MATLAB</p>
+      <h2 id="calibration-title">Connecting sensors to robot coordinates</h2>
+      <p>The calibration work covers rigid point registration, electromagnetic and optical pivot calibration, and an eye-in-hand camera. For the camera, relative robot and camera motions form the equation AX = XB; a quaternion-based rotation estimate and translation least-squares solve recover X.</p>
+      <figure class="content-figure">
+        <a href="../media/asbr/tha3-registration.png"><img src="../media/asbr/tha3-registration.png" alt="Original calibration scene and overlays comparing transformed model markers with observed markers" loading="lazy"></a>
+        <figcaption>Original registration visualization from debug dataset g, frame 1. Model and measured point overlays show the alignment within the calibration scene.</figcaption>
+      </figure>
+      <p>Noise-free and noisy pose tables are compared by reconstructing the observed object's pose in the robot base frame. Consistency across observations is useful evidence, but it must be interpreted alongside the frame conventions and the diversity of the calibration motions.</p>
+      <p><a href="https://github.com/DanielAgbara/ASBR/tree/main/THA3">Explore THA3: registration, pivot and hand&ndash;eye calibration</a></p>
+    </section>
+    <section id="fixtures" aria-labelledby="fixtures-title">
+      <p class="section-label">THA4 &middot; MATLAB</p>
+      <h2 id="fixtures-title">Guiding motion through virtual geometry</h2>
+      <p>Tubular and conical virtual fixtures combine attraction, damping and tangential guidance to influence simulated motion. A separate constrained inverse-kinematics formulation considers joint limits, target distance, tool orientation and a virtual wall.</p>
+      <figure class="content-figure">
+        <a href="../media/asbr/tha4-tubular.png"><img src="../media/asbr/tha4-tubular.png" alt="Tubular virtual fixture with trajectory snapshots, force arrows and multiple views of the reference curve" loading="lazy"></a>
+        <figcaption>Regenerated tubular-fixture simulation: the blue trajectory approaches and follows the reference region, with force components shown at selected positions.</figcaption>
+      </figure>
+      <div class="case-takeaway">
+        <h3>A useful limitation</h3>
+        <p>The constrained-IK report records temporary wall penetration for distant starting positions. A locally linearized constraint can be satisfied by the optimization step even when the actual nonlinear motion crosses the wall. This makes step size and nonlinear feasibility checks important parts of further development.</p>
+      </div>
+      <p><a href="https://github.com/DanielAgbara/ASBR/tree/main/THA4">Explore THA4: impedance guidance and constrained IK</a></p>
+    </section>
+    <section id="takeaways" aria-labelledby="takeaways-title">
+      <h2 id="takeaways-title">What the series taught me</h2>
+      <p>These projects connected geometric reasoning with practical implementation choices: keeping coordinate conventions consistent, handling singular representations, choosing informative calibration poses and checking whether numerical constraints match physical behavior.</p>
+      <p>The repository includes a README for each project, reproducible entry points and an MIT license for our original code. Figures are identified as original project outputs or regenerated examples.</p>
+      <p><a href="https://github.com/DanielAgbara/ASBR">Read the full project collection on GitHub</a></p>
+    </section>
+  </main>
+</body>
+</html>
