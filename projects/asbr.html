@@ -7,6 +7,15 @@
   <title>Algorithms for Sensor-Based Robotics | Daniel Agbara</title>
   <link rel="stylesheet" href="../style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .video-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 20px 0 32px; }
+    .video-gallery .video-figure { min-width: 0; margin: 0; text-align: left; }
+    .video-gallery video { display: block; width: 100%; max-width: 100%; aspect-ratio: 16 / 10; object-fit: contain; background: #eef1f4; margin: 0; }
+    .video-gallery figcaption { margin-top: 12px; font-style: normal; }
+    .video-gallery figcaption strong { color: #142b3b; }
+    .video-gallery figcaption a { display: inline-block; margin-top: 6px; }
+    @media (max-width: 700px) { .video-gallery { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body class="case-study">
   <header class="hero-header">
@@ -51,13 +60,88 @@
       <p class="section-label">THA2 &middot; MATLAB</p>
       <h2 id="kinematics-title">Controlling a redundant manipulator</h2>
       <p>Using a KUKA LBR iiwa 14 R820 model, we built forward kinematics and Jacobians with the Product of Exponentials formulation. Inverse-kinematics experiments compare Jacobian-based updates and explore how redundancy can support secondary objectives such as joint-limit avoidance and manipulability.</p>
-      <figure class="video-figure">
-        <video controls playsinline preload="metadata" poster="../media/asbr/tha2-kuka.png" aria-label="Original KUKA helix-path simulation" style="display:block;width:100%;max-width:100%;margin:0">
-          <source src="../media/asbr/helix-path.mp4" type="video/mp4">
-          <a href="../media/asbr/helix-path.mp4">Download the helix-path simulation</a>
-        </video>
-        <figcaption>Original project recording of a helical path experiment. The poster is a separate MATLAB rendering of the bundled robot model.</figcaption>
-      </figure>
+      <p>All eight original THA2 recordings are available below. Play any video to inspect the recorded motion or metrics, or use its download link. Playback preserves the original timing.</p>
+      <h3>Path-following experiments</h3>
+      <div class="video-gallery">
+        <figure class="video-figure">
+          <video controls playsinline preload="none" poster="../media/asbr/tha2-videos/circle-path.jpg" aria-label="Circle path">
+            <source src="../media/asbr/circle-path.mp4" type="video/mp4">
+            <a href="../media/asbr/circle-path.mp4">Download circle path</a>
+          </video>
+          <figcaption><strong>Circle path</strong><br>Original project recording. 5.3 seconds.
+            <a href="../media/asbr/circle-path.mp4" download>Download MP4</a>
+          </figcaption>
+        </figure>
+        <figure class="video-figure">
+          <video controls playsinline preload="none" poster="../media/asbr/tha2-videos/helix-path.jpg" aria-label="Helix path">
+            <source src="../media/asbr/helix-path.mp4" type="video/mp4">
+            <a href="../media/asbr/helix-path.mp4">Download helix path</a>
+          </video>
+          <figcaption><strong>Helix path</strong><br>Original project recording. 5.3 seconds.
+            <a href="../media/asbr/helix-path.mp4" download>Download MP4</a>
+          </figcaption>
+        </figure>
+        <figure class="video-figure">
+          <video controls playsinline preload="none" poster="../media/asbr/tha2-videos/square-path.jpg" aria-label="Square path">
+            <source src="../media/asbr/square-path.mp4" type="video/mp4">
+            <a href="../media/asbr/square-path.mp4">Download square path</a>
+          </video>
+          <figcaption><strong>Square path</strong><br>Original project recording. 5.3 seconds.
+            <a href="../media/asbr/square-path.mp4" download>Download MP4</a>
+          </figcaption>
+        </figure>
+        <figure class="video-figure">
+          <video controls playsinline preload="none" poster="../media/asbr/tha2-videos/raster-path.jpg" aria-label="Raster path">
+            <source src="../media/asbr/raster-path.mp4" type="video/mp4">
+            <a href="../media/asbr/raster-path.mp4">Download raster path</a>
+          </video>
+          <figcaption><strong>Raster path</strong><br>Original project recording. 5.3 seconds.
+            <a href="../media/asbr/raster-path.mp4" download>Download MP4</a>
+          </figcaption>
+        </figure>
+      </div>
+      <h3>Inverse kinematics</h3>
+      <div class="video-gallery">
+        <figure class="video-figure">
+          <video controls playsinline preload="none" poster="../media/asbr/tha2-videos/ik-robot-motion.jpg" aria-label="Inverse kinematics: robot motion">
+            <source src="../media/asbr/ik-robot-motion.mp4" type="video/mp4">
+            <a href="../media/asbr/ik-robot-motion.mp4">Download inverse kinematics: robot motion</a>
+          </video>
+          <figcaption><strong>Inverse kinematics: robot motion</strong><br>Original project recording. 3.4 seconds.
+            <a href="../media/asbr/ik-robot-motion.mp4" download>Download MP4</a>
+          </figcaption>
+        </figure>
+        <figure class="video-figure">
+          <video controls playsinline preload="none" poster="../media/asbr/tha2-videos/ik-metrics.jpg" aria-label="Inverse kinematics: metrics">
+            <source src="../media/asbr/ik-metrics.mp4" type="video/mp4">
+            <a href="../media/asbr/ik-metrics.mp4">Download inverse kinematics: metrics</a>
+          </video>
+          <figcaption><strong>Inverse kinematics: metrics</strong><br>Original project recording. 3.4 seconds.
+            <a href="../media/asbr/ik-metrics.mp4" download>Download MP4</a>
+          </figcaption>
+        </figure>
+      </div>
+      <h3>Redundancy resolution</h3>
+      <div class="video-gallery">
+        <figure class="video-figure">
+          <video controls playsinline preload="none" poster="../media/asbr/tha2-videos/redundancy-robot-motion.jpg" aria-label="Redundancy resolution: robot snapshot">
+            <source src="../media/asbr/redundancy-robot-motion.mp4" type="video/mp4">
+            <a href="../media/asbr/redundancy-robot-motion.mp4">Download redundancy resolution: robot snapshot</a>
+          </video>
+          <figcaption><strong>Redundancy resolution: robot snapshot</strong><br>The original file contains a single frame. 0.5 seconds.
+            <a href="../media/asbr/redundancy-robot-motion.mp4" download>Download MP4</a>
+          </figcaption>
+        </figure>
+        <figure class="video-figure">
+          <video controls playsinline preload="none" poster="../media/asbr/tha2-videos/redundancy-metrics.jpg" aria-label="Redundancy resolution: metrics">
+            <source src="../media/asbr/redundancy-metrics.mp4" type="video/mp4">
+            <a href="../media/asbr/redundancy-metrics.mp4">Download redundancy resolution: metrics</a>
+          </video>
+          <figcaption><strong>Redundancy resolution: metrics</strong><br>Original project recording. 0.9 seconds.
+            <a href="../media/asbr/redundancy-metrics.mp4" download>Download MP4</a>
+          </figcaption>
+        </figure>
+      </div>
       <p><a href="https://github.com/DanielAgbara/ASBR/tree/main/THA2">Explore THA2: kinematics, solver variants and trajectory recordings</a></p>
     </section>
     <section id="calibration" aria-labelledby="calibration-title">
